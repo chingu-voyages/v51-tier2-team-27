@@ -35,7 +35,8 @@ your repo access and to practice PR'ing with your team *before* you start
 coding!
 
 - Teammate Danielle #1: [GitHub](https://github.com/Danielle254) / [LinkedIn](https://linkedin.com/in/danielle-lindblom)
-- Teammate name #2: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Nandhini Ravichandran: [GitHub](https://github.com/Nandhini0123) / [LinkedIn](https://www.linkedin.com/in/nandhini-ravichandran-9b11272b1/)
+- Teammate name #3: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
