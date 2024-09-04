@@ -34,9 +34,8 @@ Everyone on your team should add their name along with a link to their GitHub
 your repo access and to practice PR'ing with your team *before* you start
 coding!
 
-- Teammate Danielle #1: [GitHub](https://github.com/Danielle254) / [LinkedIn](https://linkedin.com/in/danielle-lindblom)
+- Danielle Lindblom: [GitHub](https://github.com/Danielle254) / [LinkedIn](https://linkedin.com/in/danielle-lindblom)
 - Nandhini Ravichandran: [GitHub](https://github.com/Nandhini0123) / [LinkedIn](https://www.linkedin.com/in/nandhini-ravichandran-9b11272b1/)
 - Cameron Plas: [GitHub](https://github.com/plaseo) / [LinkedIn](https://linkedin.com/in/cameronplas)
 
-   ...
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+
