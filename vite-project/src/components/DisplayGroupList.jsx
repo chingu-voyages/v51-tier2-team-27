@@ -19,10 +19,12 @@ export default function DisplayGroupList(props) {
     )
 
     return (
-        <div>
+        <div className='container flex flex-col'>
            <h2>Groups</h2>
            <button onClick={props.openAddGroupModal}>Add Group</button> 
-           {groups}
+           <div className="flex flex-row">
+            {groups}
+           </div>           
         </div>
   )
 }
