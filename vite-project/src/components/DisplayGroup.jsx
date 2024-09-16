@@ -9,8 +9,8 @@ export default function DisplayGroup(props) {
       <p>{props.groupDescription}</p>
       <p>$ Spent / {props.groupBudget}</p>
       <button>Add Expense</button>
-      <p>EDIT ICON</p>
-      <p>DELETE ICON</p>
+      <button>EDIT ICON</button>
+      <button>DELETE ICON</button>
     </div>
   )
 }
