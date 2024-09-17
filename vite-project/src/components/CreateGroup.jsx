@@ -64,7 +64,7 @@ export default function CreateGroup(props) {
           className='shadow border rounded my-2'
           />
           <br/>
-          <input type='submit' className='bg-pink shadow rounded py-1 px-2'/>        
+          <input type='submit' className='bg-pink shadow rounded py-1 px-2 cursor-pointer'/>        
         </form>
       </div>
     )
