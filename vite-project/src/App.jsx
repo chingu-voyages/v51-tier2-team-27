@@ -28,10 +28,14 @@ function App() {
     setAddGroupModalIsOpen(false);
   }
 
-  function clearAllGroups() {
-    setGroupsData([]);
+  function deleteGroup(id) {
+    setGroupsData(prevGroupsData => {
+      const newGroupsData = prevGroupsData.filter(
+        item => item.groupId !== id
+      )
+      return newGroupsData;
+    })
   }
-
    
 
   return (
@@ -45,7 +49,7 @@ function App() {
     <DisplayGroupList
       groupsData={groupsData}
       openAddGroupModal={openAddGroupModal}
-      clearAllGroups={clearAllGroups}
+      deleteGroup={deleteGroup}
     />   
     </>
   )
