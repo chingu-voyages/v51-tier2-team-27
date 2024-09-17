@@ -53,9 +53,9 @@ function App() {
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] = useState(false);
 
 
-  useEffect(() => {
+  /* useEffect(() => {
     localStorage.setItem('FairShare_groupsData', JSON.stringify(groupsData));
-  }, [groupsData]);
+  }, [groupsData]); */
 
   function openAddGroupModal() {
     setAddGroupModalIsOpen(true);
