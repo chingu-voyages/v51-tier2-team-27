@@ -18,6 +18,10 @@ function App() {
     setAddGroupModalIsOpen(true);
   }
 
+  function closeAddGroupModal() {
+    setAddGroupModalIsOpen(false);
+  }
+
   function addGroup(e, group) {
     e.preventDefault();
     setGroupsData([...groupsData, group]);
@@ -32,10 +36,11 @@ function App() {
 
   return (
     <>  
-    <HomeScreen />  
+    {/* <HomeScreen />   */}
     <CreateGroup
     addGroupModalIsOpen={addGroupModalIsOpen}
     addGroup={addGroup}
+    closeAddGroupModal={closeAddGroupModal}
     />   
     <DisplayGroupList
       groupsData={groupsData}
