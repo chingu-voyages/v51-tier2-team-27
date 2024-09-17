@@ -5,7 +5,7 @@ export default function CreateGroup(props) {
   
   const [newGroupName, setNewGroupName] = useState('');
   const [newGroupDescription, setNewGroupDescription] = useState('');
-  const [newGroupBudget, setNewGroupBudget] = useState();
+  const [newGroupBudget, setNewGroupBudget] = useState('');
 
 
   if (props.addGroupModalIsOpen) {
@@ -14,7 +14,8 @@ export default function CreateGroup(props) {
       groupName: newGroupName,
       groupDescription: newGroupDescription,
       groupBudget: newGroupBudget,
-      id: uuidv4()
+      groupMembers: [],
+      groupId: uuidv4()
     }
     
     return (
@@ -27,7 +28,7 @@ export default function CreateGroup(props) {
         setNewGroupDescription("");
         setNewGroupBudget();
         }}>
-        <label for='name'>Group Name *</label>
+        <label htmlFor='name'>Group Name *</label>
         <input 
         required
         id='name'
@@ -35,8 +36,9 @@ export default function CreateGroup(props) {
         value={newGroupName}
         onChange={(e) => setNewGroupName(e.target.value)}
         placeholder='Ex: Trip to Disney!'
-        />                  
-        <label for='description'>Group Description *</label>          
+        /> 
+        <br/>                 
+        <label htmlFor='description'>Group Description *</label>          
         <textarea 
         required
         id='description'
@@ -44,7 +46,8 @@ export default function CreateGroup(props) {
         value={newGroupDescription}
         onChange={(e) => setNewGroupDescription(e.target.value)}        
         />
-        <label for='budget'>Group Budget ($) *</label>    
+        <br/>
+        <label htmlFor='budget'>Group Budget</label>    
         <input
         id='budget'
         type='number'
@@ -54,7 +57,7 @@ export default function CreateGroup(props) {
         />
         <br/>
         <input type='submit'/>        
-      </form>
+        </form>
       </div>
     )
   }

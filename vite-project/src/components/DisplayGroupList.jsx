@@ -13,18 +13,17 @@ export default function DisplayGroupList(props) {
                 groupBudget={group.groupBudget}
                 numGroupMembers={group.groupMembers.length}
                 key={group.groupId}
+                clearAllGroups={props.clearAllGroups}
                 />
             )
         }
     )
 
     return (
-        <div className='container flex flex-col'>
+        <div>
            <h2>Groups</h2>
-           <button onClick={props.openAddGroupModal}>Add Group</button> 
-           <div className="flex flex-row">
-            {groups}
-           </div>           
+           <button onClick={props.openAddGroupModal}>Add Group</button>           
+            {groups}                     
         </div>
   )
 }
