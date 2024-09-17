@@ -61,6 +61,10 @@ function App() {
     function openAddGroupModal() {
       setAddGroupModalIsOpen(true);
     }
+
+    function addGroup(group) {
+      setGroupsData(prevData => [...prevData, group]);
+    }
   
 
   return (
@@ -68,11 +72,12 @@ function App() {
     <HomeScreen />  
     <CreateGroup
     addGroupModalIsOpen={addGroupModalIsOpen}
+    addGroup={addGroup}
     />   
     <DisplayGroupList
       groupsData={groupsData}
       openAddGroupModal={openAddGroupModal}
-      />   
+    />   
     </>
   )
 }
