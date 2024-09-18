@@ -23,7 +23,7 @@ export default function DisplayGroupList(props) {
         return (
             <div className='relative min-w-96'>
                <h2 className='text-left text-heading  font-bold'>Groups</h2>
-               <button onClick={props.openAddGroupModal} className='bg-pink text-button px-4 py-1 absolute top-0 right-0 rounded-full' aria-label='create new group'>+</button> 
+               <button onClick={props.openAddGroupModal} className='bg-pink text-white text-button px-4 py-1 absolute top-0 right-0 rounded-full' aria-label='create new group'>+</button> 
                <div className='flex flex-row gap-2 my-2'>         
                     {groups}  
                 </div>                    
