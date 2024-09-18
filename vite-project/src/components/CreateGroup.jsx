@@ -58,13 +58,15 @@ export default function CreateGroup(props) {
           <input
           id='budget'
           type='number'
+          min={0}
+          step={1}
           value={newGroupBudget}
           onChange={(e) => setNewGroupBudget(e.target.value)}
           placeholder='$' 
           className='shadow border rounded my-2'
           />
           <br/>
-          <input type='submit' className='bg-pink shadow text-white rounded py-1 px-4 my-4 cursor-pointer text-button'/>        
+          <input type='submit' className='bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button'/>        
         </form>
       </div>
     )
