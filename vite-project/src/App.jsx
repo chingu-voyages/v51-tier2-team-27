@@ -18,29 +18,38 @@ function App() {
     setAddGroupModalIsOpen(true);
   }
 
+  function closeAddGroupModal() {
+    setAddGroupModalIsOpen(false);
+  }
+
   function addGroup(e, group) {
     e.preventDefault();
     setGroupsData([...groupsData, group]);
     setAddGroupModalIsOpen(false);
   }
 
-  function clearAllGroups() {
-    setGroupsData([]);
+  function deleteGroup(id) {
+    setGroupsData(prevGroupsData => {
+      const newGroupsData = prevGroupsData.filter(
+        item => item.groupId !== id
+      )
+      return newGroupsData;
+    })
   }
-
    
 
   return (
     <>  
-    <HomeScreen />  
+    {/* <HomeScreen />   */}
     <CreateGroup
     addGroupModalIsOpen={addGroupModalIsOpen}
     addGroup={addGroup}
+    closeAddGroupModal={closeAddGroupModal}
     />   
     <DisplayGroupList
       groupsData={groupsData}
       openAddGroupModal={openAddGroupModal}
-      clearAllGroups={clearAllGroups}
+      deleteGroup={deleteGroup}
     />   
     </>
   )
