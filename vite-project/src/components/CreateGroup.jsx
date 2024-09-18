@@ -19,9 +19,9 @@ export default function CreateGroup(props) {
     }
     
     return (
-      <div className='w-96 border shadow text-left relative p-2'>
-        <h3>New Group</h3>
-        <button onClick={props.closeAddGroupModal} className='bg-transparent absolute right-0 top-0'>X</button>
+      <div className='w-96 bg-white border shadow text-left relative p-2 rounded'>
+        <h3 className='text-title mb-4'>New Group</h3>
+        <button onClick={props.closeAddGroupModal} className='bg-transparent absolute right-0 top-0 text-button'>X</button>
         <form onSubmit={(e) => {
         props.addGroup(e, newGroup);
         setNewGroupName("");        
@@ -64,7 +64,7 @@ export default function CreateGroup(props) {
           className='shadow border rounded my-2'
           />
           <br/>
-          <input type='submit' className='bg-pink shadow rounded py-1 px-2 cursor-pointer'/>        
+          <input type='submit' className='bg-pink shadow rounded py-1 px-2 my-4 cursor-pointer text-button'/>        
         </form>
       </div>
     )
