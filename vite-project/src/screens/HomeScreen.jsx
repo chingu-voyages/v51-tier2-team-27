@@ -1,14 +1,13 @@
-import React from 'react'
 
 const HomeScreen = () => {
   return (
     <>
-        <h3>Delete this when you starting working on it!</h3>
-        <p className='text-charcoal'>Charcoal</p>
-        <p className='text-teal'>Teal</p>
-        <p className='text-lightTeal'>LightTeal</p>
-        <p className='text-beige'>Beige</p>
-        <p className='text-pink'>Pink</p>
+        <p className='text-title text-lightTeal bg-charcoal'>Text sizes example for testing. Delete when you start working on landing page, Cameron.</p>
+        <p className="text-hero text-pink">text-hero</p>
+        <p className='text-heading text-charcoal'>text-heading</p>
+        <p className='text-title text-lightTeal bg-charcoal'>text-title</p>
+        <p className='text-button text-teal'>text-button</p>
+        <p className='text-para text-beige bg-pink'>text-para</p>
     </>
   )
 }
