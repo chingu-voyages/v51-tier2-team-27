@@ -50,6 +50,7 @@ function App() {
       groupsData={groupsData}
       openAddGroupModal={openAddGroupModal}
       deleteGroup={deleteGroup}
+      addGroupModalIsOpen={addGroupModalIsOpen}
     />   
     </>
   )

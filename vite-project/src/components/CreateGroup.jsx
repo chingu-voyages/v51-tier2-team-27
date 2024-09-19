@@ -19,14 +19,20 @@ export default function CreateGroup(props) {
     }
     
     return (
-      <div className='w-96 border shadow text-left relative p-2'>
-        <h3>New Group</h3>
-        <button onClick={props.closeAddGroupModal} className='bg-transparent absolute right-0 top-0'>X</button>
+      <div className='min-w-96 bg-white border shadow text-left relative p-4 rounded'>
+        <h3 className='text-title mb-4 font-bold'>New Group</h3>
+        <button onClick={() => {          
+          props.closeAddGroupModal();
+          setNewGroupName("");        
+          setNewGroupDescription("");
+          setNewGroupBudget('');
+           }
+        } className='bg-transparent absolute right-0 top-0 text-button p-4' aria-label='close'>X</button>
         <form onSubmit={(e) => {
         props.addGroup(e, newGroup);
         setNewGroupName("");        
         setNewGroupDescription("");
-        setNewGroupBudget();
+        setNewGroupBudget('');
         }}
         className='py-1'
         >
@@ -58,13 +64,15 @@ export default function CreateGroup(props) {
           <input
           id='budget'
           type='number'
+          min={0}
+          step={1}
           value={newGroupBudget}
           onChange={(e) => setNewGroupBudget(e.target.value)}
           placeholder='$' 
           className='shadow border rounded my-2'
           />
           <br/>
-          <input type='submit' className='bg-pink shadow rounded py-1 px-2 cursor-pointer'/>        
+          <input type='submit' className='bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button'/>        
         </form>
       </div>
     )
