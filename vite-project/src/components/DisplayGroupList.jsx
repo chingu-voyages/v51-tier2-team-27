@@ -30,13 +30,17 @@ export default function DisplayGroupList(props) {
         }
     )
 
-    return (
-        <div>
-           <h2 className='text-left'>Groups</h2>
-           <button onClick={props.openAddGroupModal} className='bg-pink px-2 py-1'>Add Group</button> 
-           <div className='flex flex-row gap-2 my-2'>         
-                {groups}  
-            </div>                    
-        </div>
-  )
+    if (!props.addGroupModalIsOpen) {
+        return (
+            <div className='relative min-w-96'>
+               <h2 className='text-left text-heading  font-bold'>Groups</h2>
+               <button onClick={props.openAddGroupModal} className='bg-pink text-white text-button px-4 py-1 absolute top-0 right-0 rounded-full' aria-label='create new group'>+</button> 
+               <div className='flex flex-row gap-2 my-2'>         
+                    {groups}  
+                </div>                    
+            </div>
+      )
+    }
+
+    
 }

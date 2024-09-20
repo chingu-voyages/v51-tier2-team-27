@@ -3,7 +3,7 @@ import './App.css'
 import HomeScreen from './screens/HomeScreen'
 import CreateGroup from './components/CreateGroup';
 import DisplayGroupList from './components/DisplayGroupList'
-
+import Footer from './components/Footer'
 
 function App() {
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] = useState(false);
@@ -41,7 +41,7 @@ function App() {
 
   return (
     <>  
-    <HomeScreen />  
+    {/* <HomeScreen />   */}
     <CreateGroup
     addGroupModalIsOpen={addGroupModalIsOpen}
     addGroup={addGroup}
@@ -52,7 +52,9 @@ function App() {
       setGroupsData={setGroupsData}
       openAddGroupModal={openAddGroupModal}
       deleteGroup={deleteGroup}
-    />   
+      addGroupModalIsOpen={addGroupModalIsOpen}
+    />
+    {/* <Footer /> */}
     </>
   )
 }
