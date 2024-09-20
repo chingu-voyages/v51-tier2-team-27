@@ -113,7 +113,12 @@ export default function CreateGroup(props) {
             Add Group Member
           </button>
           <br />
-          <div>
+          <input
+            type="submit"
+            className="bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button"
+          />
+        </form>
+        <div>
           <h4>Group Members</h4>
           <ul>
             {groupMembers.map((member, index) => (
@@ -155,12 +160,6 @@ export default function CreateGroup(props) {
             ))}
           </ul>
         </div>
-          <input
-            type="submit"
-            className="bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button"
-          />
-        </form>
-        
       </div>
     );
   }
