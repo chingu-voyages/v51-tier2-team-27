@@ -54,7 +54,7 @@ function App() {
       deleteGroup={deleteGroup}
       addGroupModalIsOpen={addGroupModalIsOpen}
     />
-    <Footer />
+    {/* <Footer /> */}
     </>
   )
 }
