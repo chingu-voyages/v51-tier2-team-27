@@ -41,7 +41,7 @@ function App() {
 
   return (
     <>  
-    <HomeScreen />  
+    {/* <HomeScreen />   */}
     <CreateGroup
     addGroupModalIsOpen={addGroupModalIsOpen}
     addGroup={addGroup}
