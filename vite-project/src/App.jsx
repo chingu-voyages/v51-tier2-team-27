@@ -37,10 +37,11 @@ function App() {
     })
   }
    
+  
 
   return (
     <>  
-    {/* <HomeScreen />   */}
+    <HomeScreen />  
     <CreateGroup
     addGroupModalIsOpen={addGroupModalIsOpen}
     addGroup={addGroup}
@@ -48,6 +49,7 @@ function App() {
     />   
     <DisplayGroupList
       groupsData={groupsData}
+      setGroupsData={setGroupsData}
       openAddGroupModal={openAddGroupModal}
       deleteGroup={deleteGroup}
     />   

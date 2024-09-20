@@ -2,7 +2,16 @@ import React from 'react'
 import DisplayGroup from './DisplayGroup'
 
 export default function DisplayGroupList(props) {
-
+    const deleteMember = (groupId, memberIndex) => {
+        const updatedGroups = props.groupsData.map(group => {
+            if (group.groupId === groupId) {
+                const updatedMembers = group.groupMembers.filter((_, i) => i !== memberIndex);
+                return { ...group, groupMembers: updatedMembers };
+            }
+            return group;
+        });
+        props.setGroupsData(updatedGroups); 
+    };
     const groups = props.groupsData.map(
         group => {
             return (
@@ -11,9 +20,11 @@ export default function DisplayGroupList(props) {
                 groupName={group.groupName}
                 groupDescription={group.groupDescription}
                 groupBudget={group.groupBudget}
+                groupMembers={group.groupMembers}
                 numGroupMembers={group.groupMembers.length}
                 key={group.groupId}
                 deleteGroup={props.deleteGroup}
+                deleteMember={deleteMember}
                 />
             )
         }
