@@ -37,6 +37,7 @@ function App() {
     })
   }
    
+  
 
   return (
     <>  
@@ -48,6 +49,7 @@ function App() {
     />   
     <DisplayGroupList
       groupsData={groupsData}
+      setGroupsData={setGroupsData}
       openAddGroupModal={openAddGroupModal}
       deleteGroup={deleteGroup}
       addGroupModalIsOpen={addGroupModalIsOpen}
