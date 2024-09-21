@@ -4,6 +4,7 @@ import HomeScreen from './screens/HomeScreen'
 import CreateGroup from './components/CreateGroup';
 import DisplayGroupList from './components/DisplayGroupList'
 import Footer from './components/Footer'
+import LandingTop from './landing/LandingTop'
 
 function App() {
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] = useState(false);
@@ -41,7 +42,7 @@ function App() {
 
   return (
     <>  
-    {/* <HomeScreen />   */}
+    {/* <HomeScreen /> */}
     <CreateGroup
     addGroupModalIsOpen={addGroupModalIsOpen}
     addGroup={addGroup}
@@ -54,6 +55,7 @@ function App() {
       deleteGroup={deleteGroup}
       addGroupModalIsOpen={addGroupModalIsOpen}
     />
+    <LandingTop />
     <Footer />
     </>
   )
