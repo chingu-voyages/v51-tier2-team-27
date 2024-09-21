@@ -5,7 +5,7 @@ import CreateGroup from './components/CreateGroup';
 import DisplayGroupList from './components/DisplayGroupList'
 import Footer from './components/Footer'
 import LandingTop from './landing/LandingTop'
-
+import LandingMiddle from './landing/LandingMiddle'
 function App() {
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] = useState(false);
   const [groupsData, setGroupsData] = useState(() => JSON.parse(localStorage.getItem('FairShare_groupsData')) || []); 
@@ -56,6 +56,7 @@ function App() {
       addGroupModalIsOpen={addGroupModalIsOpen}
     />
     <LandingTop />
+    <LandingMiddle />
     <Footer />
     </>
   )
