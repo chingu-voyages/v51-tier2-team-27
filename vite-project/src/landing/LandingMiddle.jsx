@@ -1,4 +1,3 @@
-import React from 'react';
 import Arrow from '../assets/arrow-pink.png';
 
 export default function LandingMiddle() {
