@@ -7,7 +7,7 @@ import Footer from './components/Footer'
 import LandingTop from './landing/LandingTop'
 import LandingMiddle from './landing/LandingMiddle'
 import LandingBottom from './landing/LandingBottom'
-
+import LandingLogo from './landing/LandingLogo'
 function App() {
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] = useState(false);
   const [groupsData, setGroupsData] = useState(() => JSON.parse(localStorage.getItem('FairShare_groupsData')) || []); 
@@ -57,6 +57,7 @@ function App() {
       deleteGroup={deleteGroup}
       addGroupModalIsOpen={addGroupModalIsOpen}
     />
+    <LandingLogo />
     <LandingTop />
     <LandingMiddle />
     <LandingBottom />

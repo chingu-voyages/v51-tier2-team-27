@@ -7,8 +7,7 @@ export default function Footer() {
         <img
           src={Logo}
           alt="FairShare Logo"
-          className="ml-14 mb-4"
-          style={{ width: "273px", height: "84px" }}
+          className="ml-14 mb-4 w-32 h-14"
         />
       </div>
       <div className="border-l-2 border-[#E3315D] h-10 mx-4"></div>
