@@ -2,7 +2,7 @@ import Logo from "../assets/logoTrans.png";
 
 export default function Footer() {
   return (
-    <div className="flex items-center justify-between bg-[#F0D9BC] fixed bottom-0 left-0 right-0 w-full">
+    <div className="flex items-center justify-between w-full mt-10">
       <div className="flex items-center">
         <img
           src={Logo}

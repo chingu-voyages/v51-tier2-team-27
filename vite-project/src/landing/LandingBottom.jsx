@@ -13,7 +13,7 @@ export default function LandingBottom() {
       <h1 className="text-4xl font-bold text-black">
         What Are You Waiting For?
       </h1>
-      <p className="mt-4 text-lg text-black">
+      <p className="mt-4 text-lg text-white">
         Create your first expense group!
       </p>
       <button className="bg-[#E3315D] text-white py-2 px-4 rounded-lg text-sm">
