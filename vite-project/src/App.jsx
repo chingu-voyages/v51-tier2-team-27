@@ -3,7 +3,7 @@ import './App.css'
 import HomeScreen from './screens/HomeScreen'
 import CreateGroup from './components/CreateGroup';
 import DisplayGroupList from './components/DisplayGroupList'
-
+import Footer from './components/Footer'
 
 function App() {
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] = useState(false);
@@ -37,6 +37,7 @@ function App() {
     })
   }
    
+  
 
   return (
     <>  
@@ -48,10 +49,12 @@ function App() {
     />   
     <DisplayGroupList
       groupsData={groupsData}
+      setGroupsData={setGroupsData}
       openAddGroupModal={openAddGroupModal}
       deleteGroup={deleteGroup}
       addGroupModalIsOpen={addGroupModalIsOpen}
-    />   
+    />
+    {/* <Footer /> */}
     </>
   )
 }
