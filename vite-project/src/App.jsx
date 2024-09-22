@@ -45,38 +45,57 @@ function App() {
       return newGroupsData;
     })
   }
+
+  function updateNav(selection) {
+    switch (selection) {
+      case 'groups':
+        setNavSelect('groups');
+        break;
+      case 'expenses':
+        setNavSelect('expenses');
+        break;
+      case 'analytics':
+        setNavSelect('analytics');
+        break;
+    }
+  }
    
   
 
   return (
-    <div className='grid grid-cols-8 gap-4 min-h-screen'>  
+    <div className=' min-h-screen grid grid-cols-8'>      
       {/* <HomeScreen />   */}
       <Nav 
       addGroupModalIsOpen={addGroupModalIsOpen}
       navSelect={navSelect}
+      updateNav={updateNav}
       />
       <CreateGroup
       addGroupModalIsOpen={addGroupModalIsOpen}
       addGroup={addGroup}
       closeAddGroupModal={closeAddGroupModal}
       />   
-      <DisplayGroupList
-      groupsData={groupsData}
-      setGroupsData={setGroupsData}
-      openAddGroupModal={openAddGroupModal}
-      deleteGroup={deleteGroup}
-      addGroupModalIsOpen={addGroupModalIsOpen}
-      navSelect={navSelect}
-      />
-      <DisplayExpensesList
-      navSelect={navSelect}
-      addGroupModalIsOpen={addGroupModalIsOpen}
-      />
-      <DisplayAnalyticsList 
-      navSelect={navSelect}
-      addGroupModalIsOpen={addGroupModalIsOpen}
-      />
-      {/* <Footer /> */}
+      <div className='col-span-6 flex flex-col justify-between'>
+        <DisplayGroupList
+        groupsData={groupsData}
+        setGroupsData={setGroupsData}
+        openAddGroupModal={openAddGroupModal}
+        deleteGroup={deleteGroup}
+        addGroupModalIsOpen={addGroupModalIsOpen}
+        navSelect={navSelect}
+        />
+        <DisplayExpensesList
+        navSelect={navSelect}
+        addGroupModalIsOpen={addGroupModalIsOpen}
+        />
+        <DisplayAnalyticsList 
+        navSelect={navSelect}
+        addGroupModalIsOpen={addGroupModalIsOpen}
+        />  
+        <Footer 
+        addGroupModalIsOpen={addGroupModalIsOpen}
+        />
+      </div>    
     </div>
   )
 }
