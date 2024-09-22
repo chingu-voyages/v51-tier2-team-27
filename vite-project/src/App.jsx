@@ -15,6 +15,10 @@ function App() {
     localStorage.setItem('FairShare_groupsData', JSON.stringify(groupsData));
   }, [groupsData]);
 
+  useEffect(() => {
+    localStorage.setItem('FairShare_navSelect', JSON.stringify(navSelect));
+  }, [navSelect]);
+
   function openAddGroupModal() {
     setAddGroupModalIsOpen(true);
   }
