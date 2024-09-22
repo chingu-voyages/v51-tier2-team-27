@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import HomeScreen from './screens/HomeScreen'
-import CreateGroup from './components/Groups/CreateGroup';
+import CreateGroup from './components/Groups/CreateGroup'
 import DisplayGroupList from './components/Groups/DisplayGroupList'
 import Footer from './components/Footer'
 import Nav from './components/Nav'
-import DisplayExpensesList from './components/Expenses/DisplayExpensesList';
+import DisplayExpensesList from './components/Expenses/DisplayExpensesList'
+import DisplayAnalyticsList from './components/Analytics/DisplayAnalyticsList'
 
 function App() {
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] = useState(false);
@@ -48,7 +49,7 @@ function App() {
   
 
   return (
-    <div className='grid'>  
+    <div className='grid grid-cols-6 gap-4'>  
       {/* <HomeScreen />   */}
       <Nav 
       addGroupModalIsOpen={addGroupModalIsOpen}
@@ -69,9 +70,11 @@ function App() {
       />
       <DisplayExpensesList
       navSelect={navSelect}
+      addGroupModalIsOpen={addGroupModalIsOpen}
       />
       <DisplayAnalyticsList 
       navSelect={navSelect}
+      addGroupModalIsOpen={addGroupModalIsOpen}
       />
       {/* <Footer /> */}
     </div>
