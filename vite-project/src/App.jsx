@@ -49,7 +49,7 @@ function App() {
   
 
   return (
-    <div className='grid grid-cols-6 gap-4'>  
+    <div className='grid grid-cols-8 gap-4 min-h-screen'>  
       {/* <HomeScreen />   */}
       <Nav 
       addGroupModalIsOpen={addGroupModalIsOpen}
