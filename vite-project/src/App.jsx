@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import HomeScreen from './screens/HomeScreen'
-import CreateGroup from './components/CreateGroup';
-import DisplayGroupList from './components/DisplayGroupList'
+import CreateGroup from './components/Groups/CreateGroup';
+import DisplayGroupList from './components/Groups/DisplayGroupList'
 import Footer from './components/Footer'
 
 function App() {
