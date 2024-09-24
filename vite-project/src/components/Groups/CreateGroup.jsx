@@ -102,14 +102,16 @@ export default function CreateGroup(props) {
           />
           <br />
           <label htmlFor="member">Add Group Member</label>
+          <br />
           <input
             id="member"
             type="text"
             value={newMember}
             onChange={(e) => setNewMember(e.target.value)}
-            placeholder="Enter member name"
+            placeholder="Ex. Michael"
+            className="shadow border rounded w-full my-2"
           />
-          <button type="button" onClick={addGroupMember}>
+          <button type="button" onClick={addGroupMember} className='bg-pink text-white text-button rounded text-sm mt-4'>
             Add Group Member
           </button>
           <br />
@@ -119,7 +121,7 @@ export default function CreateGroup(props) {
           />
         </form>
         <div>
-          <h4>Group Members</h4>
+          <h4  className='text-base font-bold mt-4'>Group Members</h4>
           <ul>
             {groupMembers.map((member, index) => (
               <li key={index}>
@@ -130,7 +132,7 @@ export default function CreateGroup(props) {
                       value={editedMember}
                       onChange={(e) => setEditedMember(e.target.value)}
                     />
-                    <button onClick={handleSave}>Save</button>
+                    <button className='bg-pink text-white text-button rounded text-sm mt-2' onClick={handleSave}>Save</button>
                   </div>
                 ) : (
                   <div>
@@ -145,7 +147,7 @@ export default function CreateGroup(props) {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="size-6"
+                        className="size-3"
                       >
                         <path
                           strokeLinecap="round"
