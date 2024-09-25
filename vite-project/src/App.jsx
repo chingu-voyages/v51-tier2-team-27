@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import HomeScreen from "./screens/HomeScreen";
 import CreateGroup from "./components/Groups/CreateGroup";
 import DisplayGroupList from "./components/Groups/DisplayGroupList";
 import DashboardStyling from "./components/DashboardStyling";
@@ -8,6 +7,7 @@ import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import DisplayExpensesList from "./components/Expenses/DisplayExpensesList";
 import DisplayAnalyticsList from "./components/Analytics/DisplayAnalyticsList";
+import LandingPage from "./components/Landing/LandingPage";
 
 function App() {
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] = useState(false);
@@ -17,7 +17,15 @@ function App() {
   const [navSelect, setNavSelect] = useState(
     () => JSON.parse(localStorage.getItem("FairShare_navSelect")) || "groups"
   );
+  const [isFirstVisit, setIsFirstVisit] = useState(
+    () => !localStorage.getItem("FairShare_hasVisited")
+  );
 
+  useEffect(() => {
+    if (isFirstVisit) {
+      localStorage.setItem("FairShare_hasVisited", "true");
+    }
+  }, [isFirstVisit]);
 
   // update groups in local storage any time it changes
   useEffect(() => {
@@ -34,7 +42,7 @@ function App() {
   }
 
   function closeAddGroupModal() {
-    setAddGroupModalIsOpen(false); 
+    setAddGroupModalIsOpen(false);
   }
 
   function addGroup(e, group) {
@@ -68,38 +76,45 @@ function App() {
   }
 
   return (
-    <div className=" min-h-screen grid grid-cols-8">
-      {/* <HomeScreen />   */}
-      <Nav
-        addGroupModalIsOpen={addGroupModalIsOpen}
-        navSelect={navSelect}
-        updateNav={updateNav}
-      />
-      <CreateGroup
-        addGroupModalIsOpen={addGroupModalIsOpen}
-        addGroup={addGroup}
-        closeAddGroupModal={closeAddGroupModal}
-      />
-      <div className="col-span-6 flex flex-col justify-between">
-      {!addGroupModalIsOpen ? <DashboardStyling /> : null}
-        <DisplayGroupList
-          groupsData={groupsData}
-          setGroupsData={setGroupsData}
-          openAddGroupModal={openAddGroupModal}
-          deleteGroup={deleteGroup}
-          addGroupModalIsOpen={addGroupModalIsOpen}
-          navSelect={navSelect}
-        />
-        <DisplayExpensesList
-          navSelect={navSelect}
-          addGroupModalIsOpen={addGroupModalIsOpen}
-        />
-        <DisplayAnalyticsList
-          navSelect={navSelect}
-          addGroupModalIsOpen={addGroupModalIsOpen}
-        />
-        <Footer addGroupModalIsOpen={addGroupModalIsOpen} />
-      </div>
+    <div className="min-h-screen grid grid-cols-8">
+      {isFirstVisit ? (
+        <div className="col-span-8 flex justify-center items-center">
+          <LandingPage />
+        </div>
+      ) : (
+        <>
+          <Nav
+            addGroupModalIsOpen={addGroupModalIsOpen}
+            navSelect={navSelect}
+            updateNav={updateNav}
+          />
+          <CreateGroup
+            addGroupModalIsOpen={addGroupModalIsOpen}
+            addGroup={addGroup}
+            closeAddGroupModal={closeAddGroupModal}
+          />
+          <div className="col-span-6 flex flex-col justify-between">
+            {!addGroupModalIsOpen ? <DashboardStyling /> : null}
+            <DisplayGroupList
+              groupsData={groupsData}
+              setGroupsData={setGroupsData}
+              openAddGroupModal={openAddGroupModal}
+              deleteGroup={deleteGroup}
+              addGroupModalIsOpen={addGroupModalIsOpen}
+              navSelect={navSelect}
+            />
+            <DisplayExpensesList
+              navSelect={navSelect}
+              addGroupModalIsOpen={addGroupModalIsOpen}
+            />
+            <DisplayAnalyticsList
+              navSelect={navSelect}
+              addGroupModalIsOpen={addGroupModalIsOpen}
+            />
+            <Footer addGroupModalIsOpen={addGroupModalIsOpen} />
+          </div>
+        </>
+      )}
     </div>
   );
 }
