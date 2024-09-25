@@ -1,6 +1,7 @@
-import DashboardTop from "../assets/dashboard-top.png";
+import DashboardTop from "../../assets/dashboard-top.png";
 
 const DashboardStyling = () => {
+  
   return (
     <div className="relative">
       <img
