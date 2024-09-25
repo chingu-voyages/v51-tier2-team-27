@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import CreateGroup from "./components/Groups/CreateGroup";
 import DisplayGroupList from "./components/Groups/DisplayGroupList";
-import DashboardStyling from "./components/DashboardStyling";
+import DashboardStyling from "./components/UserDashboard/DashboardStyling";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import DisplayExpensesList from "./components/Expenses/DisplayExpensesList";
