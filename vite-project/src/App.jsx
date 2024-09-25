@@ -18,7 +18,6 @@ function App() {
     () => JSON.parse(localStorage.getItem("FairShare_navSelect")) || "groups"
   );
 
-  const [showDashboardStyling, setShowDashboardStyling] = useState(true);
 
   // update groups in local storage any time it changes
   useEffect(() => {
@@ -32,12 +31,10 @@ function App() {
 
   function openAddGroupModal() {
     setAddGroupModalIsOpen(true);
-    setShowDashboardStyling(false); 
   }
 
   function closeAddGroupModal() {
-    setAddGroupModalIsOpen(false);
-    setShowDashboardStyling(true); 
+    setAddGroupModalIsOpen(false); 
   }
 
   function addGroup(e, group) {
@@ -84,7 +81,7 @@ function App() {
         closeAddGroupModal={closeAddGroupModal}
       />
       <div className="col-span-6 flex flex-col justify-between">
-      {showDashboardStyling && <DashboardStyling />}
+      {!addGroupModalIsOpen ? <DashboardStyling /> : null}
         <DisplayGroupList
           groupsData={groupsData}
           setGroupsData={setGroupsData}

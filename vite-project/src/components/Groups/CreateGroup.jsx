@@ -23,7 +23,8 @@ export default function CreateGroup(props) {
     setEditedMember(groupMembers[index]);
   };
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault();
     const updatedMembers = [...groupMembers];
     updatedMembers[editIndex] = editedMember.trim();
     setGroupMembers(updatedMembers);
@@ -142,6 +143,7 @@ export default function CreateGroup(props) {
                         className="shadow border rounded my-2 bg-white text-charcoal/50 p-1"
                       />
                       <button
+                        type="button"
                         className="bg-pink text-button rounded text-sm mt-2 ml-4"
                         onClick={handleSave}
                       >
