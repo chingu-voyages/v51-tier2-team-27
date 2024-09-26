@@ -1,17 +1,30 @@
+import React from "react";
 import DashboardTop from "../../assets/dashboard-top.png";
 
 const DashboardStyling = () => {
-  
+  const userName = localStorage.getItem("FairShare_userName");
+  const userAvatar = localStorage.getItem("FairShare_userAvatar");
+  const userAvatarAlt = localStorage.getItem("FairShare_userAvatarAlt");
+
   return (
     <div className="relative">
+      <div className="absolute top-8 right-20 flex items-center space-x-4">
+        {userAvatar && (
+          <img
+            src={userAvatar}
+            alt={userAvatarAlt || "Avatar"}
+            className="w-10 h-10 rounded-full"
+          />
+        )}
+        <h2 className="text-black text-2xl font-bold">
+          {userName || "Freddy"}
+        </h2>
+      </div>
       <img
         src={DashboardTop}
         alt="Teal wave image at top of dashboard."
         className="w-full"
       />
-      <h2 className="absolute top-8 right-48 text-white text-heading font-bold">
-        Freddy
-      </h2>
     </div>
   );
 };

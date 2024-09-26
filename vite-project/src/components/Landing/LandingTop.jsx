@@ -1,6 +1,6 @@
 import Coins from "../../assets/hero-image.png";
 
-export default function LandingTop() {
+export default function LandingTop({ handleGetStarted }) {
   return (
     <div className="relative flex flex-col items-start justify-center text-left pb-40">
       <div className="flex justify-end items-center w-full h-full">
@@ -20,7 +20,10 @@ export default function LandingTop() {
           <br />
           shared expenses among groups.
         </p>
-        <button className="bg-[#E3315D] text-white py-2 px-4 rounded-lg text-sm">
+        <button
+          onClick={handleGetStarted}
+          className="bg-[#E3315D] text-white py-2 px-4 rounded-lg text-sm"
+        >
           Get Started
         </button>
       </div>
