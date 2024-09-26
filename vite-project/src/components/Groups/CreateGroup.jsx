@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { storage } from "../../firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default function CreateGroup(props) {
   const [newGroupName, setNewGroupName] = useState("");
@@ -13,6 +13,7 @@ export default function CreateGroup(props) {
   const [editedMember, setEditedMember] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
+  const [showImage, setShowImage] = useState(false);
 
   const addGroupMember = () => {
     if (newMember.trim()) {
@@ -44,11 +45,26 @@ export default function CreateGroup(props) {
   const uploadImage = () => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `receipts/${imageUpload.name + uuidv4()}`);
-    uploadBytes(imageRef, imageUpload).then(() => {
-      alert("Image Uploaded");
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrl(url);
+        alert("Image Uploaded");
+      })
+      
     });
   };
-
+  
+  const viewImage = () => {
+    if(imageUrl){
+      console.log("image url", imageUrl);
+      setShowImage(true)
+    }
+  }
+  const closeImage = () => {
+    if(imageUrl){
+      setShowImage(false)
+    }
+  }
   if (props.addGroupModalIsOpen) {
     const newGroup = {
       groupName: newGroupName,
@@ -143,6 +159,15 @@ export default function CreateGroup(props) {
               <button type="button" onClick={uploadImage} className="text-white bg-teal">
                 Upload Receipt
               </button>
+              <button type="button" onClick={viewImage} className="text-white bg-teal">
+                view Receipt
+              </button>
+              {showImage && imageUrl &&(
+                <div>
+                  <button onClick={closeImage}>close</button>
+                  <img src={imageUrl} />
+                </div>
+              )}
             </div>
 
             <label htmlFor="member" className="text-charcoal">
