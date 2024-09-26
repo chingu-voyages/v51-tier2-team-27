@@ -26,7 +26,7 @@ function SignUp({ closeSignUp }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
+      <div className="bg-white p-8 rounded-lg">
         <h1 className="text-2xl font-bold mb-4 text-[#575757]">Hi There!</h1>
         <p className="mb-4 text-[#575757]">Enter your details to get started</p>
         <form onSubmit={handleSubmit}>
@@ -49,7 +49,7 @@ function SignUp({ closeSignUp }) {
                   src={avatar.src}
                   alt={avatar.alt}
                   className={`w-12 h-12 rounded-full cursor-pointer ${
-                    selectedAvatar === avatar.src ? "border-2 border-blue-500" : ""
+                    selectedAvatar === avatar.src ? "border-2 border-[#68AEA7]" : ""
                   }`}
                   onClick={() => setSelectedAvatar(avatar.src)}
                 />
@@ -58,7 +58,7 @@ function SignUp({ closeSignUp }) {
           </div>
           <button
             type="submit"
-            className="mt-4 bg-[#E3315D] text-white py-2 px-4 rounded"
+            className="bg-[#E3315D] text-white py-2 px-4 rounded"
           >
             Let's Go!
           </button>
