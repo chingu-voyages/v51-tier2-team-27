@@ -123,19 +123,6 @@ export default function CreateGroup(props) {
             />
             <br />
 
-            <label htmlFor="splitExpenses" className="text-charcoal">
-              Split expenses equally among group members?
-            </label>
-            <br />
-            <input
-              id="splitExpenses"
-              type="checkbox"
-              checked={isSplit}
-              onChange={() => setIsSplit(!isSplit)}
-              className="mr-2"
-            />
-            <br />
-
             <label htmlFor="member" className="text-charcoal">
               Add Group Member
             </label>
@@ -226,6 +213,21 @@ export default function CreateGroup(props) {
             </ul>
             <br />
 
+
+            <label htmlFor="splitExpenses" className="text-charcoal">
+              Split expenses equally among group members?
+            </label>
+            <br />
+            <input
+              id="splitExpenses"
+              type="checkbox"
+              checked={isSplit}
+              onChange={() => setIsSplit(!isSplit)}
+              className="mr-2"
+            />
+            <br />
+
+                      
             {isSplit && groupMembers.length > 0 && newGroupBudget && (
               <div className="mt-4">
                 <h4 className="text-base text-charcoal font-bold">
