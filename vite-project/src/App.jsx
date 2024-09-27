@@ -29,12 +29,10 @@ function App() {
     }
   }, [isFirstVisit]);
 
-  // update groups in local storage any time it changes
   useEffect(() => {
     localStorage.setItem("FairShare_groupsData", JSON.stringify(groupsData));
   }, [groupsData]);
 
-  // update user nav preference in local storage any time it changes
   useEffect(() => {
     localStorage.setItem("FairShare_navSelect", JSON.stringify(navSelect));
   }, [navSelect]);
@@ -61,6 +59,10 @@ function App() {
       );
       return newGroupsData;
     });
+  }
+
+  function editGroup(id) {
+
   }
 
   function updateNav(selection) {
@@ -113,6 +115,7 @@ function App() {
               deleteGroup={deleteGroup}
               addGroupModalIsOpen={addGroupModalIsOpen}
               navSelect={navSelect}
+              editGroup={editGroup}
             />
             <DisplayExpensesList
               navSelect={navSelect}
