@@ -9,6 +9,7 @@ export default function CreateGroup(props) {
   const [newMember, setNewMember] = useState("");
   const [editIndex, setEditIndex] = useState(null);
   const [editedMember, setEditedMember] = useState("");
+  const [isSplit, setIsSplit] = useState(false);
 
   const addGroupMember = () => {
     if (newMember.trim()) {
@@ -35,6 +36,13 @@ export default function CreateGroup(props) {
     setGroupMembers(updatedMembers);
     setEditIndex(null);
     setEditedMember("");
+  };
+
+  const calculateSplit = () => {
+    if (groupMembers.length > 0 && newGroupBudget) {
+      return (newGroupBudget / groupMembers.length).toFixed(2);
+    }
+    return 0;
   };
 
   if (props.addGroupModalIsOpen) {
@@ -114,6 +122,20 @@ export default function CreateGroup(props) {
               className="shadow border rounded my-2 p-1 bg-white text-charcoal"
             />
             <br />
+
+            <label htmlFor="splitExpenses" className="text-charcoal">
+              Split expenses equally among group members?
+            </label>
+            <br />
+            <input
+              id="splitExpenses"
+              type="checkbox"
+              checked={isSplit}
+              onChange={() => setIsSplit(!isSplit)}
+              className="mr-2"
+            />
+            <br />
+
             <label htmlFor="member" className="text-charcoal">
               Add Group Member
             </label>
@@ -203,6 +225,15 @@ export default function CreateGroup(props) {
               ))}
             </ul>
             <br />
+
+            {isSplit && groupMembers.length > 0 && newGroupBudget && (
+              <div className="mt-4">
+                <h4 className="text-base text-charcoal font-bold">
+                  Each member should contribute: ${calculateSplit()}
+                </h4>
+              </div>
+            )}
+
             <div className="flex justify-center mt-8">
               <input
                 type="submit"
