@@ -25,6 +25,7 @@ export default function DisplayGroupList(props) {
                 key={group.groupId}
                 deleteGroup={props.deleteGroup}
                 deleteMember={deleteMember}
+                editGroup={props.editGroup}
                 />
             )
         }

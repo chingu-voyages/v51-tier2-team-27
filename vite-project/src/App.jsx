@@ -23,6 +23,7 @@ function App() {
     () => !localStorage.getItem("FairShare_hasVisited")
   );
   const [showSignUp, setShowSignUp] = useState(false);
+  const [editGroupModalIsOpen, setEditGroupModalIsOpen] = useState(false);
 
   useEffect(() => {
     if (isFirstVisit) {
@@ -63,6 +64,7 @@ function App() {
   }
 
   function editGroup(id) {
+    setEditGroupModalIsOpen(true);
 
   }
 
@@ -118,7 +120,9 @@ function App() {
               navSelect={navSelect}
               editGroup={editGroup}
             />
-            {/* <EditGroup /> */}
+            <EditGroup 
+              editGroupModalIsOpen={editGroupModalIsOpen}
+            />
             <DisplayExpensesList
               navSelect={navSelect}
               addGroupModalIsOpen={addGroupModalIsOpen}
