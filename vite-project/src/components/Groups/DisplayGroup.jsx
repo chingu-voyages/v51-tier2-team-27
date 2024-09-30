@@ -4,7 +4,7 @@ export default function DisplayGroup(props) {
   const id = props.groupId;
  
   return (
-    <div className='border shadow rounded p-2 text-left relative bg-lightTeal min-w-72'>
+    <div className='border shadow rounded-xl p-3 text-left relative bg-lightTeal/40 min-w-72'>
       <h3 className='text-title mb-4 font-bold'>{props.groupName}</h3>
       <div className='flex flex-row absolute right-2 top-2'>
         <p className='pr-1'>{props.numGroupMembers}</p>
@@ -13,7 +13,7 @@ export default function DisplayGroup(props) {
         </svg>      
       </div>
       <p className='text-para mb-2'>{props.groupDescription}</p>
-      <div>
+      {/* <div>
       {props.groupMembers.map((member, index) => (
            <div key={index}>
                <p>{member}</p>
@@ -29,7 +29,7 @@ export default function DisplayGroup(props) {
                    </button>
             </div>
       ))}
-      </div>
+      </div> */}
       <p className='text-para'>$ Spent / {props.groupBudget}</p>
       <button className='bg-pink px-4 py-1 mt-6 text-button text-white'>Add Expense</button>
       <button  className='bg-transparent p-1 absolute bottom-1 right-10'>
