@@ -89,10 +89,10 @@ export default function DisplayGroup(props) {
 
       {showDetails && (
         <div className="bg-white p-4 mt-4 rounded shadow-md">
-          <h4 className="text-charcoal font-bold">Group ID: {props.groupId}</h4>
-          <p>Group Name: {props.groupName}</p>
-          <p>Group Description: {props.groupDescription}</p>
-          <p>Group Allotted Budget: ${props.groupBudget}</p>
+          {/* <h4 className="text-charcoal font-bold">Group ID: {props.groupId}</h4> */}
+          <p><span className="text-charcoal font-bold">Group Name:</span> {props.groupName}</p>
+          <p><span className="text-charcoal font-bold">Group Description:</span> {props.groupDescription}</p>
+          <p><span className="text-charcoal font-bold">Group Allotted Budget: </span> ${props.groupBudget}</p>
 
           <h4 className="text-charcoal font-bold mt-4">Group Members</h4>
           <ul>
