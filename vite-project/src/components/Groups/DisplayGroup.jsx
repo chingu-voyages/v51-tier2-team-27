@@ -53,34 +53,46 @@ export default function DisplayGroup(props) {
       <p className='text-para'>$ Spent / {groupBudget}</p>
       <button className='bg-pink px-4 py-1 mt-6 text-button text-white'>Add Expense</button>
       {isEditing ? (
+        
         <form
+        className='flex flex-col gap-2 mt-2'
+        
           onSubmit={(e) => {
             e.preventDefault();
             updateGroup();
           }}
         >
+        
+        
           <input
+          className="bg-lightTeal/40 border border-lightTeal/20 rounded-md w-auto"
             id="group-name"
             value={editName}
             onChange={(e) => setEditName(e.target.value)}
             placeholder="Group Name"
           />
           <input
+          className="bg-lightTeal/40 border border-lightTeal/20 rounded-md w-auto"
             id="group-description"
             value={editDescription}
             onChange={(e) => setEditDescription(e.target.value)}
             placeholder="Group Description"
           />
           <input
+            className="bg-lightTeal/40 border border-lightTeal/20 rounded-md w-auto"
             id="group-budget"
-            type="number"
+            type="text"
             value={editBudget}
             onChange={(e) => setEditBudget(e.target.value)}
             placeholder="Group Budget"
           />
-          <button type="submit">Save</button>
-          <button type="button" onClick={cancelEdit}>Cancel</button>
+          <div>
+          <button className="bg-pink px-4 py-1 mt-6 text-button text-white" type="submit">Save</button>
+          <button className="bg-pink px-4 py-1 mt-6 text-button text-white" type="button" onClick={cancelEdit}>Cancel</button>
+          </div>
+          
         </form>
+        
       ) : (
         <button className='bg-transparent p-1 absolute bottom-1 right-10' onClick={() => setIsEditing(true)}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6" role='img'>
@@ -88,7 +100,9 @@ export default function DisplayGroup(props) {
             <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
           </svg>
         </button>
+        
       )}
+
       <button onClick={() => props.deleteGroup(id)} className='bg-transparent p-1 absolute bottom-1 right-1'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6" role='img'>
           <title>delete group</title>
