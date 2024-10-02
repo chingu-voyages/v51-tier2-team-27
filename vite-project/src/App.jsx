@@ -9,6 +9,7 @@ import DisplayExpensesList from "./components/Expenses/DisplayExpensesList";
 import DisplayAnalyticsList from "./components/Analytics/DisplayAnalyticsList";
 import LandingPage from "./components/Landing/LandingPage";
 import SignUp from "./components/SignUp/SignUp";
+import AddExpense from "./components/Expenses/AddExpenses";
 
 function App() {
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] = useState(false);
@@ -122,6 +123,7 @@ function App() {
               navSelect={navSelect}
               addGroupModalIsOpen={addGroupModalIsOpen}
             />
+            <AddExpense />
             <Footer addGroupModalIsOpen={addGroupModalIsOpen} />
           </div>
         </>
