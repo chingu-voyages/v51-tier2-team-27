@@ -130,7 +130,7 @@ export default function DisplayGroup(props) {
                 {member}
               </li>
             ))}
-          </ul
+          </ul>
         </div>
       )}
 
