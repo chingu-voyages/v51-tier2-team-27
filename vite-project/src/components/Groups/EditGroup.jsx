@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-const EditGroup = ({ groupName, groupDescription, groupBudget, onEdit }) => {
+const EditGroup = ({
+  groupName,
+  groupDescription,
+  groupBudget,
+  onEdit,
+  onCancel,
+}) => {
   const [name, setName] = useState(groupName);
   const [description, setDescription] = useState(groupDescription);
   const [budget, setBudget] = useState(groupBudget);
@@ -14,10 +20,15 @@ const EditGroup = ({ groupName, groupDescription, groupBudget, onEdit }) => {
     <>
       <div className="fixed inset-0 flex items-center justify-center bg-beige">
         <div className="bg-white w-[55%] h-[90%] p-6 rounded-lg shadow-lg relative overflow-auto">
-          <h3 className="text-title text-charcoal mb-4 font-bold">Edit Group</h3>
+          <h3 className="text-title text-charcoal mb-4 font-bold">
+            Edit Group
+          </h3>
           <button
             onClick={() => {
-             
+              setName(groupName);
+              setDescription(groupDescription);
+              setBudget(groupBudget);
+              onCancel();
             }}
             className="bg-transparent text-charcoal absolute right-0 top-0 text-button p-4"
             aria-label="close"
@@ -49,7 +60,6 @@ const EditGroup = ({ groupName, groupDescription, groupBudget, onEdit }) => {
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Group Description"
               style={{
-                
                 overflow: "hidden",
                 resize: "none",
               }}
@@ -66,9 +76,12 @@ const EditGroup = ({ groupName, groupDescription, groupBudget, onEdit }) => {
               placeholder="Group Budget"
             />
             <div className="flex justify-center mt-4">
-            <button type="submit" className="bg-pink text-button rounded text-sm mt-2 ml-4 text-white">
-              Save
-            </button>
+              <button
+                type="submit"
+                className="bg-pink text-button rounded text-sm mt-2 ml-4 text-white"
+              >
+                Save
+              </button>
             </div>
           </form>
         </div>

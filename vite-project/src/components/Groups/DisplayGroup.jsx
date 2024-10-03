@@ -1,23 +1,28 @@
 import React, { useState } from "react";
-import EditGroup from "./EditGroup"; // Import the EditGroup component
+import EditGroup from "./EditGroup";
 
 export default function DisplayGroup(props) {
   const [showDetails, setShowDetails] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [groupName, setGroupName] = useState(props.groupName);
-  const [groupDescription, setGroupDescription] = useState(props.groupDescription);
+  const [groupDescription, setGroupDescription] = useState(
+    props.groupDescription
+  );
   const [groupBudget, setGroupBudget] = useState(props.groupBudget);
 
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
 
-  // Handle the edit logic
+  const handleCancel = () => {
+    setIsEditing(false);
+  };
+
   const handleEdit = (newName, newDescription, newBudget) => {
     setGroupName(newName);
     setGroupDescription(newDescription);
     setGroupBudget(newBudget);
-    setIsEditing(false); // Close the edit form after saving
+    setIsEditing(false);
   };
 
   return (
@@ -54,7 +59,10 @@ export default function DisplayGroup(props) {
         </button>
 
         <div>
-          <button className="bg-transparent p-1" onClick={() => setIsEditing(true)}>
+          <button
+            className="bg-transparent p-1"
+            onClick={() => setIsEditing(true)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -99,9 +107,21 @@ export default function DisplayGroup(props) {
 
       {showDetails && (
         <div className="bg-white p-4 mt-4 rounded shadow-md">
-          <p><span className="text-charcoal font-bold">Group Name: {groupName}</span></p>
-          <p><span className="text-charcoal font-bold">Group Description: {groupDescription}</span></p>
-          <p><span className="text-charcoal font-bold">Group Allotted Budget: ${groupBudget}</span></p>
+          <p>
+            <span className="text-charcoal font-bold">
+              Group Name: {groupName}
+            </span>
+          </p>
+          <p>
+            <span className="text-charcoal font-bold">
+              Group Description: {groupDescription}
+            </span>
+          </p>
+          <p>
+            <span className="text-charcoal font-bold">
+              Group Allotted Budget: ${groupBudget}
+            </span>
+          </p>
 
           <h4 className="text-charcoal font-bold mt-4">Group Members</h4>
           <ul>
@@ -120,6 +140,7 @@ export default function DisplayGroup(props) {
           groupDescription={groupDescription}
           groupBudget={groupBudget}
           onEdit={handleEdit}
+          onCancel={handleCancel}
         />
       )}
     </div>
