@@ -78,7 +78,7 @@ const EditGroup = ({
             <div className="flex justify-center mt-4">
               <button
                 type="submit"
-                className="bg-pink text-button rounded text-sm mt-2 ml-4 text-white"
+                className="bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button"
               >
                 Save
               </button>

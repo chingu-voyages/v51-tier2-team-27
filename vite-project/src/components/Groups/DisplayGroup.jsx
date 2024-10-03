@@ -54,7 +54,7 @@ export default function DisplayGroup(props) {
       <p className="text-para">$ Spent / {groupBudget}</p>
 
       <div className="flex justify-between items-center mt-6">
-        <button className="bg-pink px-4 py-1 text-button text-white">
+        <button className="bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button">
           Add Expense
         </button>
 

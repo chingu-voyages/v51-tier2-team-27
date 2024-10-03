@@ -35,7 +35,7 @@ export default function DisplayGroupList(props) {
             <div className='min-w-full flex flex-col p-4'>
                 <div className='flex flex-row justify-start gap-12 items-center' >
                     <h2 className='text-left text-heading  font-bold'>Groups</h2>
-                    <button onClick={props.openAddGroupModal} className='bg-pink text-white text-button rounded px-2 h-10 pt-[1px]'>Add New Group</button> 
+                    <button onClick={props.openAddGroupModal} className='bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button'>Add New Group</button> 
                 </div>
                 <div className='flex flex-row gap-2 my-4'>         
                     {groups}  
