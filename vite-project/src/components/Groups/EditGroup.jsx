@@ -19,7 +19,7 @@ const EditGroup = ({
   return (
     <>
       <div className="fixed inset-0 flex items-center justify-center bg-beige">
-        <div className="bg-white w-[55%] h-[90%] p-6 rounded-lg shadow-lg relative overflow-auto">
+        <div className="bg-white w-[55%] h-[60%] p-6 rounded-lg shadow-lg relative overflow-auto">
           <h3 className="text-title text-charcoal mb-4 font-bold">
             Edit Group
           </h3>
@@ -37,13 +37,13 @@ const EditGroup = ({
           </button>
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-2 mt-2 px-10 py-10 mx-10 my-10 bg-white"
+            className="py-1"
           >
             <label htmlFor="name" className="text-charcoal">
               Group Name
             </label>
             <input
-              className="shadow border rounded w-full mt-1 p-1 bg-white text-charcoal"
+              className="shadow border rounded w-full my-2 p-1 bg-white text-charcoal"
               type="text"
               id="name"
               value={name}
