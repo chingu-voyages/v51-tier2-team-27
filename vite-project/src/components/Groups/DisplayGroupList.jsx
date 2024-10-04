@@ -33,25 +33,16 @@ export default function DisplayGroupList(props) {
   if (!props.addGroupModalIsOpen && props.navSelect === "groups") {
     return (
       <div className="min-w-full flex flex-col p-4">
-        <div className="flex flex-row justify-start gap-8 items-center">
+        <div className="flex flex-row justify-start gap-12 items-center">
           <h2 className="text-left text-heading  font-bold">Groups</h2>
           <button
             onClick={props.openAddGroupModal}
-            className="bg-pink text-white text-button rounded px-3 py-2"
+            className="bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button"
           >
             Add New Group
           </button>
         </div>
-        <div className="flex flex-wrap gap-4 my-4">
-          {groups.map((group, index) => (
-            <div
-              key={index}
-              className=" transform transition-transform duration-200 hover:scale-105"
-            >
-              {group}
-            </div>
-          ))}
-        </div>
+        <div className="flex flex-row gap-2 my-4">{groups}</div>
       </div>
     );
   }
