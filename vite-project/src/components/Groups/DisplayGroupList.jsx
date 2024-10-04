@@ -1,5 +1,6 @@
 import React from "react";
 import DisplayGroup from "./DisplayGroup";
+import { addExpense } from "../../slices/expenseSlice";
 
 export default function DisplayGroupList(props) {
   const deleteMember = (groupId, memberIndex) => {
@@ -26,6 +27,7 @@ export default function DisplayGroupList(props) {
         key={group.groupId}
         deleteGroup={props.deleteGroup}
         deleteMember={deleteMember}
+        addExpenseModal={props.addExpenseModal}
       />
     );
   });

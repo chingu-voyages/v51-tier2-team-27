@@ -9,6 +9,8 @@ export default function CreateGroup(props) {
   const [newMember, setNewMember] = useState("");
   const [editIndex, setEditIndex] = useState(null);
   const [editedMember, setEditedMember] = useState("");
+  const [expenses, setExpenses] = useState([]);
+  
 
   const addGroupMember = () => {
     if (newMember.trim()) {

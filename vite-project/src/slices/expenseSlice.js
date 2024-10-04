@@ -1,19 +1,37 @@
-import {createSlice} from "@reduxjs/toolkit"
-const expensesSlice = createSlice({
-    name: "expenses",
-    initialState:{
-        expenses: 
-        localStorage.getItem("expenses") 
-        ? (JSON.parse(localStorage.getItem('expenses'))) 
-        : [],
-    },
-    reducers: {
-        addExpense: (state, action) => {
-            state.expenses.push(action.payload);
-            localStorage.setItem("expenses",JSON.stringify(state.expenses))
-        }
-    }
+import {createSlice} from "@reduxjs/toolkit";
+const getGroupsFromLocalStorage = () => {
+  const groups = localStorage.getItem("groups");
+  return groups ? JSON.parse(groups) : [];
+};
 
-})
-export const {addExpense} = expensesSlice.actions;
-export default expensesSlice.reducer;
+const saveGroupsToLocalStorage = (groups) => {
+  localStorage.setItem("groups", JSON.stringify(groups));
+};
+
+const expenseSlice = createSlice({
+  name: "expenses",
+  initialState: {
+    groups: getGroupsFromLocalStorage(),
+  },
+  reducers: {
+    addExpense: (state, action) => {
+      const { groupId, name, description, category, amount, participants, date, id } = action.payload;
+
+      const groups = getGroupsFromLocalStorage();
+      
+      const group = groups.find((group) => group.id === groupId);
+
+      if (group) {
+        group.expenses.push({ id, name, description, category, amount, participants, date });
+        
+        saveGroupsToLocalStorage(groups);
+      }
+
+      state.groups = groups;
+    },
+  },
+});
+
+export const { addExpense } = expenseSlice.actions;
+export default expenseSlice.reducer;
+

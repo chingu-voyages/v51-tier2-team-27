@@ -7,7 +7,6 @@ export default function DisplayGroup(props) {
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
-
   const maxGroupNameLength = 10;
  function displayId(){
     return(
@@ -43,7 +42,11 @@ export default function DisplayGroup(props) {
       <p className="text-para">$ Spent / {props.groupBudget}</p>
       {/* <button className='bg-pink px-4 py-1 mt-6 text-button text-white'>Add Expense</button> */}
       <div className="flex justify-between items-center mt-6">
-        <button className="bg-pink px-4 py-1 text-button text-white">
+        <button className="bg-pink px-4 py-1 text-button text-white" 
+        onClick={(e) => {
+          e.stopPropagation(); 
+          props.addExpenseModal(); 
+        }}>
           Add Expense
         </button>
 
@@ -93,7 +96,7 @@ export default function DisplayGroup(props) {
 
       {showDetails && (
         <div className="bg-white p-4 mt-4 rounded shadow-md">
-          {/* <h4 className="text-charcoal font-bold">Group ID: {props.groupId}</h4> */}
+          <h4 className="text-charcoal font-bold">Group ID: {props.groupId}</h4>
           <p><span className="text-charcoal font-bold">Group Name:</span> {props.groupName}</p>
           <p><span className="text-charcoal font-bold">Group Description:</span> {props.groupDescription}</p>
           <p><span className="text-charcoal font-bold">Group Allotted Budget: </span> ${props.groupBudget}</p>

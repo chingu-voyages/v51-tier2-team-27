@@ -1,7 +1,7 @@
 import {useState} from "react";
 import { addExpense } from "../../slices/expenseSlice";
 import { useDispatch } from "react-redux";
-const AddExpense = () => {
+const AddExpense = ({ groupId}) => {
     const dispatch = useDispatch();
     const [expense, setExpense] = useState({
       name: '',
@@ -19,7 +19,7 @@ const AddExpense = () => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      dispatch(addExpense({ ...expense, id: Date.now() })); 
+      dispatch(addExpense({ ...expense, id: Date.now(), groupId })); 
       setExpense({ name: '', description: '', category: '', amount: 0, participants: [], date: '' });
     };
   
@@ -44,7 +44,7 @@ const AddExpense = () => {
         <label htmlFor="date">Date</label>
         <input name="date" id="date" type="date" value={expense.date} onChange={handleChange} />
         <br />
-        <button type="submit">Add Expense</button>
+        <button type="submit">Submit</button>
       </form>
       </div>
     );

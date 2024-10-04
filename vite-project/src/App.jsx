@@ -13,6 +13,8 @@ import AddExpense from "./components/Expenses/AddExpenses";
 
 function App() {
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] = useState(false);
+  const [addExpenseGroupIsOpen, setAddExpenseGroupIsOpen] = useState(false);
+  const [selectedGroupId, setSelectedGroupId] = useState(null);
   const [groupsData, setGroupsData] = useState(
     () => JSON.parse(localStorage.getItem("FairShare_groupsData")) || []
   );
@@ -40,7 +42,8 @@ function App() {
     localStorage.setItem("FairShare_navSelect", JSON.stringify(navSelect));
   }, [navSelect]);
 
-  function openAddGroupModal() {
+  function openAddGroupModal(groupId) {
+    setSelectedGroupId(groupId);
     setAddGroupModalIsOpen(true);
   }
 
@@ -54,7 +57,10 @@ function App() {
     closeAddGroupModal();
     setAddGroupModalIsOpen(false);
   }
-
+  function addExpenseModal(groupId){
+    setSelectedGroupId(groupId);
+    setAddExpenseGroupIsOpen(true);
+  }
   function deleteGroup(id) {
     setGroupsData((prevGroupsData) => {
       const newGroupsData = prevGroupsData.filter(
@@ -114,6 +120,8 @@ function App() {
               deleteGroup={deleteGroup}
               addGroupModalIsOpen={addGroupModalIsOpen}
               navSelect={navSelect}
+              addExpenseGroupIsOpen={addExpenseGroupIsOpen}
+              addExpenseModal={addExpenseModal}
             />
             <DisplayExpensesList
               navSelect={navSelect}
@@ -123,7 +131,13 @@ function App() {
               navSelect={navSelect}
               addGroupModalIsOpen={addGroupModalIsOpen}
             />
-            <AddExpense />
+            
+
+           {addExpenseGroupIsOpen && (
+            <AddExpense 
+            groupId={selectedGroupId}/>
+           )}
+            
             <Footer addGroupModalIsOpen={addGroupModalIsOpen} />
           </div>
         </>
