@@ -15,7 +15,7 @@ const avatars = [
 
 function SignUp({ closeSignUp }) {
   const [name, setName] = useState("");
-  const [selectedAvatar, setSelectedAvatar] = useState(avatars[0].src); // Set default avatar to monsterRed
+  const [selectedAvatar, setSelectedAvatar] = useState(avatars[0].src);
 
   const handleSubmit = (e) => {
     e.preventDefault();

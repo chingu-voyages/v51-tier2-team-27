@@ -18,7 +18,7 @@ const EditGroup = ({
 
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center bg-beige">
+      <div className="fixed inset-0 flex items-center justify-center bg-beige 100vh width-full">
         <div className="bg-white w-[55%] h-[60%] p-6 rounded-lg shadow-lg relative overflow-auto">
           <h3 className="text-title text-charcoal mb-4 font-bold">
             Edit Group
@@ -35,10 +35,7 @@ const EditGroup = ({
           >
             X
           </button>
-          <form
-            onSubmit={handleSubmit}
-            className="py-1"
-          >
+          <form onSubmit={handleSubmit} className="py-1">
             <label htmlFor="name" className="text-charcoal">
               Group Name
             </label>

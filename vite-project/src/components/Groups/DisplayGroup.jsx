@@ -22,6 +22,29 @@ export default function DisplayGroup(props) {
     setGroupName(newName);
     setGroupDescription(newDescription);
     setGroupBudget(newBudget);
+    const groupId = props.groupId;
+
+    const groupsData =
+      JSON.parse(localStorage.getItem("FairShare_groupsData")) || [];
+
+    const groupIndex = groupsData.findIndex(
+      (group) => group.groupId === groupId
+    );
+
+    if (groupIndex !== -1) {
+      groupsData[groupIndex] = {
+        ...groupsData[groupIndex],
+        groupName: newName,
+        groupDescription: newDescription,
+        groupBudget: newBudget,
+      };
+    } else {
+      console.error(`Group with ID ${groupId} not found`);
+      return;
+    }
+
+    localStorage.setItem("FairShare_groupsData", JSON.stringify(groupsData));
+
     setIsEditing(false);
   };
 
