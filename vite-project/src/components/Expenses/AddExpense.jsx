@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { storage } from "../../../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const AddExpense = ({ groupId, onCancel, participants }) => {
   const [expenseName, setExpenseName] = useState("");
@@ -6,10 +9,35 @@ const AddExpense = ({ groupId, onCancel, participants }) => {
   const [expenseDescription, setExpenseDescription] = useState("");
   const [expenseCategory, setExpenseCategory] = useState("");
   const [expenseParticipants, setExpenseParticipants] = useState(participants);
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
+  const [showImage, setShowImage] = useState(false);
   const [expenseDate, setExpenseDate] = useState(
     new Date().toISOString().split("T")[0]
   );
-
+  const uploadImage = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `receipts/${imageUpload.name + uuidv4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrl(url);
+        alert("Image Uploaded");
+      })
+      
+    });
+  };
+  
+  const viewImage = () => {
+    if(imageUrl){
+      console.log("image url", imageUrl);
+      setShowImage(true)
+    }
+  }
+  const closeImage = () => {
+    if(imageUrl){
+      setShowImage(false)
+    }
+  }
   const handleAdd = () => {
     const expenseData = {
       name: expenseName,
@@ -18,8 +46,11 @@ const AddExpense = ({ groupId, onCancel, participants }) => {
       category: expenseCategory,
       participants: expenseParticipants,
       date: expenseDate,
+      image: imageUrl,
     };
-
+    if (imageUpload) {
+      uploadImage();
+    }
     const groupsData =
       JSON.parse(localStorage.getItem("FairShare_groupsData")) || [];
     const groupIndex = groupsData.findIndex(
@@ -123,6 +154,26 @@ const AddExpense = ({ groupId, onCancel, participants }) => {
                 </option>
               ))}
             </select>
+            <div>
+              <input
+                type="file"
+                onChange={(event) => {
+                  setImageUpload(event.target.files[0]);
+                }}
+              />
+              <button type="button" onClick={uploadImage} className="text-white bg-teal">
+                Upload Receipt
+              </button>
+              <button type="button" onClick={viewImage} className="text-white bg-teal">
+                view Receipt
+              </button>
+              {showImage && imageUrl &&(
+                <div>
+                  <button onClick={closeImage}>close</button>
+                  <img src={imageUrl} />
+                </div>
+              )}
+            </div>
             <label htmlFor="date" className="text-charcoal">
               Date
             </label>
