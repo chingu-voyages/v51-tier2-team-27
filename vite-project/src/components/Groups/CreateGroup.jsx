@@ -109,7 +109,7 @@ export default function CreateGroup(props) {
               min={0}
               step={1}
               value={newGroupBudget}
-              onChange={(e) => setNewGroupBudget(e.target.value)}
+              onChange={(e) => setNewGroupBudget(parseFloat(e.target.value))}
               placeholder="$"
               className="shadow border rounded my-2 p-1 bg-white text-charcoal"
             />
