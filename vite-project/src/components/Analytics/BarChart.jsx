@@ -10,7 +10,7 @@ const BarChart = ({ labels, data }) => {
     labels: labels, 
     datasets: [
       {
-        label: 'Group Budgets',
+        label: 'Expense',
         data: data, 
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
       },
@@ -25,7 +25,7 @@ const BarChart = ({ labels, data }) => {
       },
       title: {
         display: true,
-        text: 'Group Budgets',
+        text: 'Group Expenses',
       },
     },
   };
