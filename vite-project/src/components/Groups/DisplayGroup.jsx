@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import EditGroup from "./EditGroup";
+import AddExpense from "../Expenses/AddExpense";
 
 export default function DisplayGroup(props) {
   const [showDetails, setShowDetails] = useState(false);
@@ -9,43 +10,10 @@ export default function DisplayGroup(props) {
     props.groupDescription
   );
   const [groupBudget, setGroupBudget] = useState(props.groupBudget);
+  const [showExpenseForm, setShowExpenseForm] = useState(false);
 
   const toggleDetails = () => {
     setShowDetails(!showDetails);
-  };
-
-  const handleCancel = () => {
-    setIsEditing(false);
-  };
-
-  const handleEdit = (newName, newDescription, newBudget) => {
-    setGroupName(newName);
-    setGroupDescription(newDescription);
-    setGroupBudget(newBudget);
-    const groupId = props.groupId;
-
-    const groupsData =
-      JSON.parse(localStorage.getItem("FairShare_groupsData")) || [];
-
-    const groupIndex = groupsData.findIndex(
-      (group) => group.groupId === groupId
-    );
-
-    if (groupIndex !== -1) {
-      groupsData[groupIndex] = {
-        ...groupsData[groupIndex],
-        groupName: newName,
-        groupDescription: newDescription,
-        groupBudget: newBudget,
-      };
-    } else {
-      console.error(`Group with ID ${groupId} not found`);
-      return;
-    }
-
-    localStorage.setItem("FairShare_groupsData", JSON.stringify(groupsData));
-
-    setIsEditing(false);
   };
 
   return (
@@ -77,7 +45,10 @@ export default function DisplayGroup(props) {
       <p className="text-para">$ Spent / {groupBudget}</p>
 
       <div className="flex justify-between items-center mt-6">
-        <button className="bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button">
+        <button
+          className="bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button"
+          onClick={() => setShowExpenseForm(true)}
+        >
           Add Expense
         </button>
 
@@ -161,9 +132,22 @@ export default function DisplayGroup(props) {
         <EditGroup
           groupName={groupName}
           groupDescription={groupDescription}
+          groupId={props.groupId}
           groupBudget={groupBudget}
-          onEdit={handleEdit}
-          onCancel={handleCancel}
+          onCancel={() => setIsEditing(false)}
+          on
+          handleSubmit={handleEdit}
+        />
+      )}
+
+      {showExpenseForm && (
+        <AddExpense
+          groupId={props.groupId}
+          onCancel={() => setShowExpenseForm(false)}
+          participants={props.groupMembers}
+          setGroupName={setGroupName}
+          setGroupDescription={setGroupDescription}
+          setGroupBudget={setGroupBudget}
         />
       )}
     </div>

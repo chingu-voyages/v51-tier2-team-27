@@ -4,21 +4,49 @@ const EditGroup = ({
   groupName,
   groupDescription,
   groupBudget,
-  onEdit,
+  groupId,
   onCancel,
+  onUpdate,
 }) => {
   const [name, setName] = useState(groupName);
   const [description, setDescription] = useState(groupDescription);
   const [budget, setBudget] = useState(groupBudget);
 
+  const handleEdit = (newName, newDescription, newBudget) => {
+    setName(newName);
+    setDescription(newDescription);
+    setBudget(newBudget);
+
+    const groupsData =
+      JSON.parse(localStorage.getItem("FairShare_groupsData")) || [];
+
+    const groupIndex = groupsData.findIndex(
+      (group) => group.groupId === groupId
+    );
+
+    if (groupIndex !== -1) {
+      groupsData[groupIndex] = {
+        ...groupsData[groupIndex],
+        groupName: newName,
+        groupDescription: newDescription,
+        groupBudget: newBudget,
+      };
+      localStorage.setItem("FairShare_groupsData", JSON.stringify(groupsData));
+      onUpdate(newName, newDescription, newBudget);
+      console.error(`Group with ID ${groupId} not found`);
+      return;
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onEdit(name, description, budget);
+    handleEdit(name, description, budget);
+    onCancel();
   };
 
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center bg-beige 100vh width-full">
+      <div className="fixed inset-0 flex items-center justify-center bg-beige 100vh width-full z-50">
         <div className="bg-white w-[55%] h-[60%] p-6 rounded-lg shadow-lg relative overflow-auto">
           <h3 className="text-title text-charcoal mb-4 font-bold">
             Edit Group
