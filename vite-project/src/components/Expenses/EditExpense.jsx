@@ -1,68 +1,92 @@
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-const EditExpense = ({ expense, onCancel, groupId }) => {
-  const [expenseName, setExpenseName] = useState(expense.name);
-  const [expenseAmount, setExpenseAmount] = useState(expense.amount);
-  const [expenseDescription, setExpenseDescription] = useState(expense.description);
-  const [expenseCategory, setExpenseCategory] = useState(expense.category);
-  const [expenseDate, setExpenseDate] = useState(expense.date);
+export default function EditExpense({ expense, onSave, onCancel }) {
+  const [editedExpense, setEditedExpense] = useState({ ...expense });
 
-  useEffect(() => {
-    setExpenseName(expense.name);
-    setExpenseAmount(expense.amount);
-    setExpenseDescription(expense.description);
-    setExpenseCategory(expense.category);
-    setExpenseDate(expense.date);
-  }, [expense]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedExpense((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-  const handleEdit = () => {
-    const groupsData = JSON.parse(localStorage.getItem("FairShare_groupsData")) || [];
-    const groupIndex = groupsData.findIndex(group => group.groupId === groupId);
-
-    if (groupIndex !== -1) {
-      const expenseIndex = groupsData[groupIndex].expenses.findIndex(exp => exp.name === expense.name);
-      if (expenseIndex !== -1) {
-        groupsData[groupIndex].expenses[expenseIndex] = {
-          ...groupsData[groupIndex].expenses[expenseIndex],
-          name: expenseName,
-          amount: expenseAmount,
-          description: expenseDescription,
-          category: expenseCategory,
-          date: expenseDate,
-        };
-        localStorage.setItem("FairShare_groupsData", JSON.stringify(groupsData));
-        onCancel();
-      } else {
-        console.error(`Expense not found`);
-      }
-    } else {
-      console.error(`Group with ID ${groupId} not found`);
-    }
+  const handleSave = () => {
+    onSave(editedExpense);
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-beige 100vh width-full z-50">
-      <div className="bg-white w-[55%] h-[90%] p-6 rounded-lg shadow-lg relative overflow-auto">
-        <h3 className="text-title text-charcoal mb-4 font-bold">Edit Expense</h3>
-        <button onClick={onCancel} className="bg-transparent text-charcoal absolute right-0 top-0 text-button p-4">X</button>
-        <form onSubmit={handleEdit} className="py-1">
-          <label htmlFor="name" className="text-charcoal">Expense Name</label>
-          <input id="name" type="text" value={expenseName} onChange={(e) => setExpenseName(e.target.value)} className="shadow border rounded w-full my-2 p-1 bg-white text-charcoal" />
-          <label htmlFor="amount" className="text-charcoal">Amount</label>
-          <input type="number" id="amount" value={expenseAmount} onChange={(e) => setExpenseAmount(e.target.value)} className="shadow border rounded w-full my-2 p-1 bg-white text-charcoal" />
-          <label htmlFor="description" className="text-charcoal">Description</label>
-          <input id="description" type="text" value={expenseDescription} onChange={(e) => setExpenseDescription(e.target.value)} className="shadow border rounded w-full my-2 p-1 bg-white text-charcoal" />
-          <label htmlFor="category" className="text-charcoal">Category</label>
-          <input id="category" type="text" value={expenseCategory} onChange={(e) => setExpenseCategory(e.target.value)} className="shadow border rounded w-full my-2 p-1 bg-white text-charcoal" />
-          <label htmlFor="date" className="text-charcoal">Date</label>
-          <input id="date" type="date" value={expenseDate} onChange={(e) => setExpenseDate(e.target.value)} className="shadow border rounded w-full my-2 p-1 bg-white text-charcoal" />
+    <div className="">
+      <div className="bg-white w-[40%] h-auto p-6 rounded-lg shadow-lg relative overflow-auto">
+        <h3 className="text-title text-charcoal mb-4 font-bold">
+          Edit Expense
+        </h3>
+        <button
+          onClick={onCancel}
+          className="bg-transparent text-charcoal absolute right-0 top-0 text-button p-4"
+          aria-label="close"
+        >
+          X
+        </button>
+
+        <div className="py-1">
+          <label className="block text-charcoal font-bold mb-2">Name</label>
+          <input
+            type="text"
+            name="expenseName"
+            value={editedExpense.expenseName}
+            onChange={handleChange}
+            className="w-full p-2 mb-4 border"
+          />
+          
+
+          <label className="block text-charcoal font-bold mb-2">Date</label>
+          <input
+            type="text"
+            name="date"
+            value={editedExpense.date}
+            onChange={handleChange}
+            className="w-full p-2 mb-4 border"
+          />
+
+          <label className="block text-charcoal font-bold mb-2">Amount</label>
+          <input
+            type="number"
+            name="Amount"
+            value={editedExpense.Amount}
+            onChange={handleChange}
+            className="w-full p-2 mb-4 border"
+          />
+
+          <label className="block text-charcoal font-bold mb-2">
+            Participants
+          </label>
+          <input
+            type="text"
+            name="participants"
+            value={editedExpense.participants.join(", ")}
+            onChange={(e) => {
+              const participantsArray = e.target.value
+                .split(",")
+                .map((p) => p.trim());
+              setEditedExpense((prev) => ({
+                ...prev,
+                participants: participantsArray,
+              }));
+            }}
+            className="w-full p-2 mb-4 border"
+          />
+
           <div className="flex justify-center mt-4">
-            <button type="submit" className="bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button">Save</button>
+            <button
+              onClick={handleSave}
+              className="bg-pink shadow text-white rounded py-1 px-4 cursor-pointer text-button"
+            >
+              Save
+            </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
-};
-
-export default EditExpense;
+}
