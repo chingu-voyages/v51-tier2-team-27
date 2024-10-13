@@ -16,7 +16,7 @@ export default function EditExpense({ expense, onSave, onCancel }) {
   };
 
   return (
-    <div className="">
+    <div className="fixed inset-0 flex items-center justify-center bg-beige 100vh width-full z-50">
       <div className="bg-white w-[40%] h-auto p-6 rounded-lg shadow-lg relative overflow-auto">
         <h3 className="text-title text-charcoal mb-4 font-bold">
           Edit Expense
