@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { storage } from "../../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-const AddExpense = ({ groupId, onCancel, participants }) => {
+const AddExpense = ({ groupId, onCancel, participants, updateExpenses }) => {
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
   const [expenseDescription, setExpenseDescription] = useState("");
@@ -40,8 +40,8 @@ const AddExpense = ({ groupId, onCancel, participants }) => {
   }
   const handleAdd = () => {
     const expenseData = {
-      name: expenseName,
-      amount: expenseAmount,
+      expenseName: expenseName,
+      Amount: expenseAmount,
       description: expenseDescription,
       category: expenseCategory,
       participants: expenseParticipants,
@@ -63,6 +63,10 @@ const AddExpense = ({ groupId, onCancel, participants }) => {
       }
       groupsData[groupIndex].expenses.push(expenseData);
       localStorage.setItem("FairShare_groupsData", JSON.stringify(groupsData));
+      
+      // Update the expenses in the parent component
+      updateExpenses(groupsData[groupIndex].expenses);
+      
       onCancel();
     } else {
       console.error(`Group with ID ${groupId} not found`);
@@ -90,23 +94,23 @@ const AddExpense = ({ groupId, onCancel, participants }) => {
             X
           </button>
           <form onSubmit={handleAdd} className="py-1">
-            <label htmlFor="name" className="text-charcoal">
+            <label htmlFor="expense name" className="text-charcoal">
               Expense Name
             </label>
             <input
-              id="name"
+              id="expense name"
               type="text"
               placeholder="Expense Name"
               value={expenseName}
               onChange={(e) => setExpenseName(e.target.value)}
               className="shadow border rounded w-full my-2 p-1 bg-white text-charcoal"
             />
-            <label htmlFor="amount" className="text-charcoal">
+            <label htmlFor="Amount" className="text-charcoal">
               Amount
             </label>
             <input
               type="number"
-              id="amount"
+              id="Amount"
               placeholder="100"
               value={expenseAmount}
               onChange={(e) => setExpenseAmount(e.target.value)}

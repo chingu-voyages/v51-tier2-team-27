@@ -33,7 +33,6 @@ const EditGroup = ({
       };
       localStorage.setItem("FairShare_groupsData", JSON.stringify(groupsData));
       onUpdate(newName, newDescription, newBudget);
-      console.error(`Group with ID ${groupId} not found`);
       return;
     }
   };

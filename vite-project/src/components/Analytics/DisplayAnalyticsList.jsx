@@ -13,8 +13,8 @@ export default function DisplayAnalyticsList({ navSelect, groupsData }) {
 
         // Accumulate expense data for each group
         updatedGroupData[group.groupId] = {
-          labels: groupExpenses.map(expense => expense.name),
-          data: groupExpenses.map(expense => parseFloat(expense.amount) || 0),
+          labels: groupExpenses.map(expense => expense.expenseName),
+          data: groupExpenses.map(expense => parseFloat(expense.Amount) || 0),
         };
       });
 

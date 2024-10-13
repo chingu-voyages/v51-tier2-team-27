@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import EditGroup from "./EditGroup";
-import AddExpense from "../Expenses/AddExpense";
+import EditGroup from "./EditGroup.jsx";
+import AddExpense from "../Expenses/AddExpense.jsx";
+import GroupDetails from "./GroupDetails.jsx";
 
 export default function DisplayGroup(props) {
   const [showDetails, setShowDetails] = useState(false);
@@ -11,17 +12,23 @@ export default function DisplayGroup(props) {
   );
   const [groupBudget, setGroupBudget] = useState(props.groupBudget);
   const [showExpenseForm, setShowExpenseForm] = useState(false);
+  const [groupId] = useState(props.groupId);
 
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
 
+  const handleEdit = (newName, newDescription, newBudget) => {
+    setGroupName(newName);
+    setGroupDescription(newDescription);
+    setGroupBudget(newBudget);
+  };
+
   return (
-    <div
-      className="border shadow rounded-xl p-3 text-left relative bg-lightTeal/40 min-w-72"
-      onClick={toggleDetails}
-    >
-      <h3 className="text-title mb-4 font-bold">{groupName}</h3>
+    <div className="border shadow rounded-xl p-3 text-left relative bg-lightTeal/40 min-w-72">
+      <h3 className="text-title mb-4 font-bold" onClick={toggleDetails}>
+        {groupName}
+      </h3>
       <div className="flex flex-row absolute right-2 top-2">
         <p className="pr-1">{props.numGroupMembers}</p>
         <svg
@@ -100,43 +107,20 @@ export default function DisplayGroup(props) {
       </div>
 
       {showDetails && (
-        <div className="bg-white p-4 mt-4 rounded shadow-md">
-          <p>
-            <span className="text-charcoal font-bold">
-              Group Name: {groupName}
-            </span>
-          </p>
-          <p>
-            <span className="text-charcoal font-bold">
-              Group Description: {groupDescription}
-            </span>
-          </p>
-          <p>
-            <span className="text-charcoal font-bold">
-              Group Allotted Budget: ${groupBudget}
-            </span>
-          </p>
-
-          <h4 className="text-charcoal font-bold mt-4">Group Members</h4>
-          <ul>
-            {props.groupMembers.map((member, index) => (
-              <li className="text-charcoal font-bold" key={index}>
-                {member}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <GroupDetails
+          groupId={groupId} // Pass groupId to the GroupDetails component
+          onCancel={() => setShowDetails(false)} // Close modal
+        />
       )}
 
       {isEditing && (
         <EditGroup
           groupName={groupName}
           groupDescription={groupDescription}
-          groupId={props.groupId}
+          groupId={groupId}
           groupBudget={groupBudget}
           onCancel={() => setIsEditing(false)}
-          on
-          handleSubmit={handleEdit}
+          onUpdate={handleEdit}
         />
       )}
 
