@@ -121,6 +121,7 @@ function App() {
             <DisplayAnalyticsList
               navSelect={navSelect}
               addGroupModalIsOpen={addGroupModalIsOpen}
+              groupsData={groupsData} // Pass the groups data here
             />
             <Footer addGroupModalIsOpen={addGroupModalIsOpen} />
           </div>

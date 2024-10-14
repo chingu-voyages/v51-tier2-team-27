@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import EditGroup from "./EditGroup";
+import EditGroup from "./EditGroup.jsx";
+import AddExpense from "../Expenses/AddExpense.jsx";
+import GroupDetails from "./GroupDetails.jsx";
 
 export default function DisplayGroup(props) {
   const [showDetails, setShowDetails] = useState(false);
@@ -9,51 +11,24 @@ export default function DisplayGroup(props) {
     props.groupDescription
   );
   const [groupBudget, setGroupBudget] = useState(props.groupBudget);
+  const [showExpenseForm, setShowExpenseForm] = useState(false);
+  const [groupId] = useState(props.groupId);
 
   const toggleDetails = () => {
     setShowDetails(!showDetails);
-  };
-
-  const handleCancel = () => {
-    setIsEditing(false);
   };
 
   const handleEdit = (newName, newDescription, newBudget) => {
     setGroupName(newName);
     setGroupDescription(newDescription);
     setGroupBudget(newBudget);
-    const groupId = props.groupId;
-
-    const groupsData =
-      JSON.parse(localStorage.getItem("FairShare_groupsData")) || [];
-
-    const groupIndex = groupsData.findIndex(
-      (group) => group.groupId === groupId
-    );
-
-    if (groupIndex !== -1) {
-      groupsData[groupIndex] = {
-        ...groupsData[groupIndex],
-        groupName: newName,
-        groupDescription: newDescription,
-        groupBudget: newBudget,
-      };
-    } else {
-      console.error(`Group with ID ${groupId} not found`);
-      return;
-    }
-
-    localStorage.setItem("FairShare_groupsData", JSON.stringify(groupsData));
-
-    setIsEditing(false);
   };
 
   return (
-    <div
-      className="border shadow rounded-xl p-3 text-left relative bg-lightTeal/40 min-w-72"
-      onClick={toggleDetails}
-    >
-      <h3 className="text-title mb-4 font-bold">{groupName}</h3>
+    <div className="border shadow rounded-xl p-3 text-left relative bg-lightTeal/40 min-w-72">
+      <h3 className="text-title mb-4 font-bold" onClick={toggleDetails}>
+        {groupName}
+      </h3>
       <div className="flex flex-row absolute right-2 top-2">
         <p className="pr-1">{props.numGroupMembers}</p>
         <svg
@@ -77,7 +52,10 @@ export default function DisplayGroup(props) {
       <p className="text-para">$ Spent / {groupBudget}</p>
 
       <div className="flex justify-between items-center mt-6">
-        <button className="bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button">
+        <button
+          className="bg-pink shadow text-white rounded mt-8 py-1 px-4 cursor-pointer text-button"
+          onClick={() => setShowExpenseForm(true)}
+        >
           Add Expense
         </button>
 
@@ -129,41 +107,31 @@ export default function DisplayGroup(props) {
       </div>
 
       {showDetails && (
-        <div className="bg-white p-4 mt-4 rounded shadow-md">
-          <p>
-            <span className="text-charcoal font-bold">
-              Group Name: {groupName}
-            </span>
-          </p>
-          <p>
-            <span className="text-charcoal font-bold">
-              Group Description: {groupDescription}
-            </span>
-          </p>
-          <p>
-            <span className="text-charcoal font-bold">
-              Group Allotted Budget: ${groupBudget}
-            </span>
-          </p>
-
-          <h4 className="text-charcoal font-bold mt-4">Group Members</h4>
-          <ul>
-            {props.groupMembers.map((member, index) => (
-              <li className="text-charcoal font-bold" key={index}>
-                {member}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <GroupDetails
+          groupId={groupId} // Pass groupId to the GroupDetails component
+          onCancel={() => setShowDetails(false)} // Close modal
+        />
       )}
 
       {isEditing && (
         <EditGroup
           groupName={groupName}
           groupDescription={groupDescription}
+          groupId={groupId}
           groupBudget={groupBudget}
-          onEdit={handleEdit}
-          onCancel={handleCancel}
+          onCancel={() => setIsEditing(false)}
+          onUpdate={handleEdit}
+        />
+      )}
+
+      {showExpenseForm && (
+        <AddExpense
+          groupId={props.groupId}
+          onCancel={() => setShowExpenseForm(false)}
+          participants={props.groupMembers}
+          setGroupName={setGroupName}
+          setGroupDescription={setGroupDescription}
+          setGroupBudget={setGroupBudget}
         />
       )}
     </div>
